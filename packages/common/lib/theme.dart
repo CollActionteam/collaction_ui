@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
 part 'theme/scheme.dart';
 part 'theme/extension.dart';
@@ -8,7 +7,6 @@ part 'theme/widgets/input.theme.dart';
 part 'theme/widgets/scheme.theme.dart';
 part 'theme/widgets/text.theme.dart';
 
-@WidgetbookTheme(name: 'Light')
 ThemeData lightTheme() {
   final theme = ThemeData.light();
 
@@ -29,7 +27,6 @@ ThemeData lightTheme() {
       .themeText();
 }
 
-@WidgetbookTheme(name: 'Dark')
 ThemeData darkTheme() {
   final theme = ThemeData.dark();
 
