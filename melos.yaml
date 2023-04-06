@@ -1,0 +1,40 @@
+name: collaction_ui
+
+sdkPath: .fvm/flutter_sdk # Comment out if not using fvm or replace with your custom flutter sdk
+
+repository: https://github.com/CollActionteam/collaction_ui
+
+packages:
+  - packages/*
+
+scripts:
+  analyze:
+    exec: dart analyze .
+    description: |
+        Run `flutter analyze` in all packages.
+  
+  format:
+    exec: flutter format --set-exit-if-changed .
+    description: | 
+      Run `flutter format` in all packages.
+    
+  get:
+    exec: flutter pub get
+    description: |
+      Run `flutter pub get` in all packages.
+
+  test: 
+    exec: flutter test --no-pub --test-randomize-ordering-seed random
+    select-package:
+      dir-exists:
+        - test
+    description: |
+      Run unit and widget tests in all packages.
+
+  build:
+    exec: flutter pub run build_runner build --delete-conflicting-outputs
+    select-package:
+      depends-on:
+        - build_runner
+    description: |
+      Run `build_runner` build command in all packages that has a dependency on `build_runner`.
