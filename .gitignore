@@ -17,3 +17,4 @@
 # Ignore flutter generated files
 **/Generated.xcconfig
 **/local.properties
+**/flutter_export_environment.sh
