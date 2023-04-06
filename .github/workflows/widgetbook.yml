@@ -17,6 +17,7 @@ env:
 
 jobs:
   deploy_widgetbook:
+    environment: release
     runs-on: ubuntu-latest
     env:
       WIDGETBOOK_API_KEY: ${{ secrets.WIDGETBOOK_API_KEY }}
@@ -48,4 +49,4 @@ jobs:
         run: melos build:widgetbook
 
       - name: Publish to Widgetbook
-        run: melos publish:widgetbook -- $WIDGETBOOK_API_KEY
+        run: melos publish:widgetbook $WIDGETBOOK_API_KEY
