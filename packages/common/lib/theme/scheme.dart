@@ -58,6 +58,7 @@ class CollactionTheme extends ThemeExtension<CollactionTheme> {
   // Dimensions
   final double? inputBorderRadius;
   final double? buttonBorderRadius;
+  final Size? elevatedButtonSize;
 
   const CollactionTheme({
     required this.background,
@@ -104,6 +105,7 @@ class CollactionTheme extends ThemeExtension<CollactionTheme> {
     required this.title3,
     required this.inputBorderRadius,
     required this.buttonBorderRadius,
+    required this.elevatedButtonSize,
   });
 
   @override
@@ -152,6 +154,7 @@ class CollactionTheme extends ThemeExtension<CollactionTheme> {
     TextStyle? title3,
     double? inputBorderRadius,
     double? buttonBorderRadius,
+    Size? elevatedButtonSize,
   }) {
     return CollactionTheme(
       background: background ?? this.background,
@@ -198,6 +201,7 @@ class CollactionTheme extends ThemeExtension<CollactionTheme> {
       title3: title3 ?? this.title3,
       inputBorderRadius: inputBorderRadius ?? this.inputBorderRadius,
       buttonBorderRadius: buttonBorderRadius ?? this.buttonBorderRadius,
+      elevatedButtonSize: elevatedButtonSize ?? this.elevatedButtonSize,
     );
   }
 
@@ -253,6 +257,7 @@ class CollactionTheme extends ThemeExtension<CollactionTheme> {
       title3: TextStyle.lerp(title3, other.title3, t),
       inputBorderRadius: inputBorderRadius ?? other.inputBorderRadius,
       buttonBorderRadius: buttonBorderRadius ?? other.buttonBorderRadius,
+      elevatedButtonSize: elevatedButtonSize ?? other.elevatedButtonSize,
     );
   }
 
@@ -342,6 +347,7 @@ class CollactionTheme extends ThemeExtension<CollactionTheme> {
     ),
     inputBorderRadius: 20,
     buttonBorderRadius: 200,
+    elevatedButtonSize: Size(double.infinity, 52),
   );
 
   // the dark theme
@@ -430,5 +436,6 @@ class CollactionTheme extends ThemeExtension<CollactionTheme> {
     ),
     inputBorderRadius: 20,
     buttonBorderRadius: 200,
+    elevatedButtonSize: Size(double.infinity, 52),
   );
 }
