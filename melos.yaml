@@ -66,9 +66,38 @@ scripts:
     exec: flutter pub run build_runner build --delete-conflicting-outputs
     concurrency: 1
     failFast: true
+    packageFilters:
+      dependsOn: build_runner
     orderDependents: true
-    select-package:
-      depends-on:
-        - build_runner
     description: |
       Run `build_runner` build command in all packages that has a dependency on `build_runner`.
+
+  get:widgetbook:
+      exec: flutter pub get
+      failFast: true
+      packageFilters:
+        scope: "collaction_book"
+      description: |
+        Run flutter pub get in collaction_book
+
+  build:widgetbook:
+      # The 'cd packages/book/' is a workaround!!!
+      run: |
+        flutter pub run build_runner build --delete-conflicting-outputs
+        cd packages/book/
+        flutter build web -t lib/main.widgetbook.dart
+      failFast: true
+      packageFilters:
+        dependsOn: build_runner
+        scope: "collaction_book"
+      description: |
+        Run `build_runner` build command and flutter build web in collaction_book
+
+  publish:widgetbook:
+      exec: widgetbook publish --api-key $0
+      concurrency: 1
+      failFast: true
+      packageFilters:
+        scope: "collaction_book"
+      description: |
+        Publish collaction_book to Widgetbook Cloud

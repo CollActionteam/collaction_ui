@@ -1,0 +1,51 @@
+on:
+  pull_request_target:
+    types:
+      - opened
+    branches:
+      - "releases/**"
+      - "main"
+  push:
+    branches:
+      - "releases/**"
+      - "main"
+
+env:
+  flutter_version: "3.7.9"
+  flutter_channel: "stable"
+  java_version: "12.x"
+
+jobs:
+  deploy_widgetbook:
+    runs-on: ubuntu-latest
+    env:
+      WIDGETBOOK_API_KEY: ${{ secrets.WIDGETBOOK_API_KEY }}
+    steps:
+      - name: Fetch code from repository
+        uses: actions/checkout@v2
+
+      - name: Setup the Flutter environment
+        uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ env.flutter_channel }}
+          flutter-version: ${{ env.flutter_version }}
+          name: collaction_book_cicd
+
+      - name: Setup FVM
+        run: |
+          dart pub global activate fvm
+          fvm install
+
+      - name: Setup Melos & Widgetbook CLI
+        run: |
+          dart pub global activate melos
+          dart pub global activate widgetbook_cli 3.0.0-beta.13
+
+      - name: Get Flutter dependencies
+        run: melos get:widgetbook
+
+      - name: Build generated code
+        run: melos build:widgetbook
+
+      - name: Publish to Widgetbook
+        run: melos publish:widgetbook -- $WIDGETBOOK_API_KEY
