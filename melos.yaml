@@ -80,10 +80,8 @@ scripts:
         Run flutter pub get in collaction_book
 
   build:widgetbook:
-      # The 'cd packages/book/' is a workaround!!!
-      run: |
+      exec: |
         flutter pub run build_runner build --delete-conflicting-outputs
-        cd packages/book/
         flutter build web -t lib/main.widgetbook.dart
       fail-fast: true
       packageFilters:
