@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=melos.yaml.schema.json
 name: collaction_ui
 
 sdkPath: .fvm/flutter_sdk # Comment out if not using fvm or replace with your custom flutter sdk
@@ -7,24 +8,54 @@ repository: https://github.com/CollActionteam/collaction_ui
 packages:
   - packages/*
 
+command:
+  bootstrap:
+    runPubGetInParallel: false
+    usePubspecOverrides: true
+
 scripts:
   analyze:
     exec: dart analyze .
+    concurrency: 1
+    failFast: true
+    orderDependents: true
     description: |
         Run `flutter analyze` in all packages.
   
   format:
     exec: flutter format --set-exit-if-changed .
+    concurrency: 1
+    failFast: true
     description: | 
       Run `flutter format` in all packages.
     
   get:
     exec: flutter pub get
+    concurrency: 1
+    failFast: true
+    orderDependents: true
     description: |
       Run `flutter pub get` in all packages.
 
+  add:
+    exec: flutter pub add $pkg
+    description: |
+      Run `flutter pub add` in package.
+    select-package:
+      flutter: true
+
+  add:dev:
+    exec: flutter pub add $pkg --dev
+    description: |
+      Run `flutter pub add --dev` in package.
+    select-package:
+      flutter: true
+     
   test: 
     exec: flutter test --no-pub --test-randomize-ordering-seed random
+    concurrency: 1
+    failFast: true
+    orderDependents: true
     select-package:
       dir-exists:
         - test
@@ -33,6 +64,9 @@ scripts:
 
   build:
     exec: flutter pub run build_runner build --delete-conflicting-outputs
+    concurrency: 1
+    failFast: true
+    orderDependents: true
     select-package:
       depends-on:
         - build_runner
