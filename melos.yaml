@@ -17,23 +17,23 @@ scripts:
   analyze:
     exec: dart analyze .
     concurrency: 1
-    failFast: true
-    orderDependents: true
+    fail-fast: true
+    order-dependents: true
     description: |
         Run `flutter analyze` in all packages.
   
   format:
     exec: flutter format --set-exit-if-changed .
     concurrency: 1
-    failFast: true
+    fail-fast: true
     description: | 
       Run `flutter format` in all packages.
     
   get:
     exec: flutter pub get
     concurrency: 1
-    failFast: true
-    orderDependents: true
+    fail-fast: true
+    order-dependents: true
     description: |
       Run `flutter pub get` in all packages.
 
@@ -41,40 +41,39 @@ scripts:
     exec: flutter pub add $pkg
     description: |
       Run `flutter pub add` in package.
-    select-package:
+    packageFilters:
       flutter: true
 
   add:dev:
     exec: flutter pub add $pkg --dev
     description: |
       Run `flutter pub add --dev` in package.
-    select-package:
+    packageFilters:
       flutter: true
      
   test: 
     exec: flutter test --no-pub --test-randomize-ordering-seed random
     concurrency: 1
-    failFast: true
-    orderDependents: true
-    select-package:
-      dir-exists:
-        - test
+    fail-fast: true
+    order-dependents: true
+    packageFilters:
+      dirExists: test
     description: |
       Run unit and widget tests in all packages.
 
   build:
     exec: flutter pub run build_runner build --delete-conflicting-outputs
     concurrency: 1
-    failFast: true
+    fail-fast: true
+    order-dependents: true
     packageFilters:
       dependsOn: build_runner
-    orderDependents: true
     description: |
       Run `build_runner` build command in all packages that has a dependency on `build_runner`.
 
   get:widgetbook:
       exec: flutter pub get
-      failFast: true
+      fail-fast: true
       packageFilters:
         scope: "collaction_book"
       description: |
@@ -86,7 +85,7 @@ scripts:
         flutter pub run build_runner build --delete-conflicting-outputs
         cd packages/book/
         flutter build web -t lib/main.widgetbook.dart
-      failFast: true
+      fail-fast: true
       packageFilters:
         dependsOn: build_runner
         scope: "collaction_book"
@@ -96,7 +95,7 @@ scripts:
   publish:widgetbook:
       exec: widgetbook publish --api-key $0
       concurrency: 1
-      failFast: true
+      fail-fast: true
       packageFilters:
         scope: "collaction_book"
       description: |

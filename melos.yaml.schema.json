@@ -188,18 +188,13 @@
                     "type": "number",
                     "description": "Defines the max concurrency value of how many packages will execute the command in at any one time. Defaults to 5"
                   },
-                  "failFast": {
+                  "fail-fast": {
                     "type": "boolean",
                     "description": "Whether exec should fail fast and not execute the script in further packages if the script fails in an individual package. Defaults to false."
                   },
-                  "orderDependents": {
+                  "order-dependents": {
                     "type": "boolean",
                     "description": "Whether exec should order the execution of the script in multiple packages based on the dependency graph of the packages. The script will be executed in leaf packages first and then in packages that depend on them and so on. This is useful for example, for a script that generates code in multiple packages, which depend on each other. Defaults to false."
-                  },
-                  "packageFilters": {
-                    "type": "object",
-                    "description": "Filters for which packages to run script in.",
-                    "items": { "type": "string" }
                   },
                   "exec": {
                     "anyOf": [
@@ -237,7 +232,7 @@
                       "description": "The value of the environment variable."
                     }
                   },
-                  "select-package": {
+                  "packageFilters": {
                     "type": "object",
                     "description": "If the command to execute is a melos command, allows filtering packages that will execute the command.",
                     "additionalProperties": false,
@@ -266,7 +261,7 @@
                           }
                         ]
                       },
-                      "dir-exists": {
+                      "dirExists": {
                         "description": "Include a package only if a given directory exists.",
                         "anyOf": [
                           {
@@ -278,7 +273,7 @@
                           }
                         ]
                       },
-                      "file-exists": {
+                      "fileExists": {
                         "description": "Include a package only if a given file exists.",
                         "anyOf": [
                           {
@@ -290,7 +285,7 @@
                           }
                         ]
                       },
-                      "depends-on": {
+                      "dependsOn": {
                         "description": "Include only packages that depend on a specific package.",
                         "anyOf": [
                           {
@@ -302,7 +297,7 @@
                           }
                         ]
                       },
-                      "no-depends-on": {
+                      "noDependsOn": {
                         "description": "Include only packages that do not depend on a specific package.",
                         "anyOf": [
                           {
@@ -322,7 +317,7 @@
                         "type": "boolean",
                         "description": "Include packages with `publish_to: none`."
                       },
-                      "no-private": {
+                      "noPrivate": {
                         "type": "boolean",
                         "description": "Exclude packages with `publish_to: none`."
                       },
