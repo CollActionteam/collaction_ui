@@ -38,14 +38,21 @@ scripts:
       Run `flutter pub get` in all packages.
 
   add:
-    exec: flutter pub add $pkg
+    exec: flutter pub add $1
+    description: |
+      Run `flutter pub add` in package.
+    packageFilters:
+      flutter: true
+
+  remove:
+    exec: flutter pub remove $1
     description: |
       Run `flutter pub add` in package.
     packageFilters:
       flutter: true
 
   add:dev:
-    exec: flutter pub add $pkg --dev
+    exec: flutter pub add $1 --dev
     description: |
       Run `flutter pub add --dev` in package.
     packageFilters:
@@ -91,7 +98,7 @@ scripts:
         Run `build_runner` build command and flutter build web in collaction_book
 
   publish:widgetbook:
-      exec: widgetbook publish --api-key $0
+      exec: widgetbook publish --api-key $1
       concurrency: 1
       fail-fast: true
       packageFilters:
