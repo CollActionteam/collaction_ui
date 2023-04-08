@@ -1,12 +1,12 @@
 part of '../theme.dart';
 
 /// Extension methods to simplify theming accessibility.
-/// 
+///
 /// Usage:
 /// ```dart
 /// ...
 /// Icon(color: context.kTheme.accent500)
-/// ``` 
+/// ```
 extension ThemeBuildContextX on BuildContext {
   ThemeData get theme => Theme.of(this);
 
