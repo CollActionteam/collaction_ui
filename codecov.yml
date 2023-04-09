@@ -14,4 +14,4 @@ ignore:
   - (?s:.*/injection\.config\.dart.*)\Z
   - ^lib/generated_plugin_registrant.dart.*
   - (?s:.*/[^\/]*\.gr\.dart.*)\Z
-  - ^lib/presentation/licenses/oss_licenses.dart
+  - ^lib/presentation/licenses/oss_licenses.dart.*

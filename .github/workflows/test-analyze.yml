@@ -1,5 +1,5 @@
 # ==================================================
-# This is the main worflow for testing and analyzing 
+# This is the main worflow for testing and analyzing
 # the code.
 # ==================================================
 
@@ -27,17 +27,17 @@ jobs:
       - name: Setup the Flutter environment
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: true
-          cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
-          cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
           flutter-version: ${{ env.flutter_version }}
-      
+
       - name: Setup Melos
         run: |
           # Disable fvm
           sed -i 's|sdkPath:|#sdkPath:|g' melos.yaml
-          
+
           # Activate melos
           dart pub global activate melos
 
@@ -63,17 +63,17 @@ jobs:
       - name: Setup the Flutter environment
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: "stable"
           cache: true
-          cache-key: 'flutter-:os:-:channel:-:version:-:arch:-:hash:'
-          cache-path: '${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:'
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
           flutter-version: ${{ env.flutter_version }}
-      
+
       - name: Setup Melos
         run: |
           # Disable fvm
           sed -i 's|sdkPath:|#sdkPath:|g' melos.yaml
-          
+
           # Activate melos
           dart pub global activate melos
 
@@ -82,10 +82,17 @@ jobs:
 
       - name: Run tests and generate coverage
         run: melos test
-      
+
+      - name: Get code coverage files
+        id: get_codecov_files
+        run: |
+          echo "CODECOV_FILES=$(
+            find . -name 'lcov.info' -print0 | tr '\0' , | sed 's/,$//'
+          )" >> $GITHUB_OUTPUT
+
       - name: Upload coverage to codecov
         uses: codecov/codecov-action@v3
         with:
           verbose: true
           fail_ci_if_error: true
-          file: packages/common/coverage/lcov.info
+          file: ${{ steps.get_codecov_files.outputs.CODECOV_FILES }}
