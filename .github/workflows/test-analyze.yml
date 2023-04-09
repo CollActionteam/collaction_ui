@@ -6,9 +6,8 @@
 name: CI
 
 on:
-  push:
-    branches: [project/**, release/**]
   pull_request:
+    branches: [project/**, release/**]
     types: [opened, synchronize]
   workflow_dispatch:
 
