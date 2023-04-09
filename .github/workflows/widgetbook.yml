@@ -3,11 +3,11 @@ on:
     types:
       - opened
     branches:
-      - "releases/**"
+      - "release/**"
       - "main"
   push:
     branches:
-      - "releases/**"
+      - "release/**"
       - "main"
 
 env:
