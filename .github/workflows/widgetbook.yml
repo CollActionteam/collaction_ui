@@ -1,23 +1,20 @@
 on:
-  pull_request_target:
-    types:
-      - opened
+  pull_request:
+    types: [opened, synchronize]
     branches:
-      - "releases/**"
+      - "release/**"
       - "main"
   push:
     branches:
-      - "releases/**"
+      - "release/**"
       - "main"
 
 env:
   flutter_version: "3.7.9"
   flutter_channel: "stable"
-  java_version: "12.x"
 
 jobs:
   deploy_widgetbook:
-    environment: release
     runs-on: ubuntu-latest
     env:
       WIDGETBOOK_API_KEY: ${{ secrets.WIDGETBOOK_API_KEY }}
