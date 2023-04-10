@@ -7,8 +7,11 @@ name: CI
 
 on:
   pull_request:
-    branches: [project/**, release/**]
     types: [opened, synchronize]
+    branches: 
+      - project/**
+      - release/**
+      - main
   workflow_dispatch:
 
 env:
