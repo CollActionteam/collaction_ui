@@ -1,7 +1,11 @@
-name: common
-description: CollAction UIs usable across all platforms.
+name: collaction_common
+description: >
+  This package provides a set of reusable widgets that can be used across all platforms. 
+  These widgets are designed to simplify and speed up the development process for creating collaction applications in Flutter.
 version: 0.0.1
-publish_to: "none"
+homepage: https://github.com/CollActionteam/collaction_ui
+repository: https://github.com/CollActionteam/collaction_ui
+issue_tracker: https://github.com/CollActionteam/collaction_ui/issues
 
 environment:
   sdk: '>=2.19.6 <3.0.0'

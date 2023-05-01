@@ -1,39 +1,117 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# collaction_common
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+This package provides a set of reusable widgets that can be used across all platforms. These widgets are designed to simplify and speed up the development process for creating collaction applications in Flutter.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+## Installation
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To use this package, add `collaction_common` as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/packages-and-plugins/using-packages).
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Import the package in your Dart code using:
 
 ```dart
-const like = 'sample';
+import 'package:collaction_common/widgets/<widget>.dart';
 ```
 
-## Additional information
+Then, you can use any of the widgets provided in the package, such as:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+CountryIcon(
+    countryCode: 'UG',
+    radius: 10,
+),
+```
+
+## Widgets
+
+The following widgets are included in this package:
+
+### CountryIcon
+
+Display the flag of a country in an avatar shape.
+
+ ```dart
+ CountryFlagAvatar(
+   countryCode: 'US',
+   radius: 32.0,
+ )
+ ```
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `key` | Widget access key. |
+| `countryCode`* | Valid two-letter country code as defined in ISO 3166-1. |
+| `radius` | Circular avatar radius. |
+
+### AccentChip
+
+Display a text label in a chip with an optional avatar leading and delete button.
+
+ ```dart
+ AccentChip(
+   text: 'Hello World',
+   leading: Icon(Icons.ac_unit),
+   onDeleted: () => print('Chip deleted'),
+   labelColor: Colors.white,
+   color: Colors.blue,
+   noMaterialTapTargetSize: true,
+ )
+ ```
+
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `key` | Widget access key. |
+| `text`* | Label text. |
+| `onDeleted` | Deletion callback. |
+| `labelColor` | Label text color. |
+| `color` | Background color. |
+| `noMaterialTapTargetSize` | Sets the the [MaterialTapTargetSize] used for the chip will be set to [MaterialTapTargetSize.shrinkWrap] when true, otherwise [MaterialTapTargetSize.padded] will be used. |
+
+### PillButton
+
+[ElevatedButton] wrapper to display a pill-shaped button with text and an optional leading widget.
+
+ ```dart
+ // Elevated button
+ PillButton(
+   text: 'Click me',
+   leading: Icon(Icons.ac_unit),
+   onTap: () => print('Button tapped'),
+   isEnabled: true,
+   isLoading: false,
+ )
+
+// Elevated Icon button
+ PillButton.icon(
+   text: 'Click me',
+   leading: Icon(Icons.ac_unit),
+   onTap: () => print('Button tapped'),
+   isEnabled: true,
+   isLoading: false,
+ )
+```
+## Parameters
+
+| Parameter | Description |
+|---|---|
+| `key` | Widget access key. |
+| `text`* | Button label. |
+| `leading` | Widget to prepend to the button label. Most preferably an icon.<br />Only required when using the `PillButton.icon` factory. |
+| `onTap` | Button click callback. |
+| `isEnabled` | Whether the button is allowing user interaction or not. |
+| `isLoading` | Whether the button is loading. |
+## Contributing
+
+All contributions are welcome, whether it is filing a bug report, filing a feature request, opening a pull request, or any other contribution.
+
+We have a couple of documents which will guide you towards a good first contribution, our contributing documentation walks you through all of our conventions that we require you to uphold when contributing.
+
+- [Contributing to CollAction](https://github.com/CollActionteam/collaction_app/blob/development/docs/CONTRIBUTING.md)
+
+Additionally, if you want to do development, we have written a document that will help you setup your local environment.
+
+- [Getting Started](https://github.com/CollActionteam/collaction_app/blob/development/docs/GETTING_STARTED.md)
