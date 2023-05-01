@@ -1,4 +1,4 @@
-import 'package:common/widgets/accent_chip.dart';
+import 'package:collaction_common/widgets/accent_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart' show Knobs;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';

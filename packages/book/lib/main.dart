@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
-import 'package:common/theme.dart';
+import 'package:collaction_common/theme.dart';
 
 void main() {
   runApp(const WidgetBook());

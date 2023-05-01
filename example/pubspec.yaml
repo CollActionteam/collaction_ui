@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.19.6 <3.0.0"
 
 dependencies:
-  common:
+  collaction_common:
     path: ../packages/common
   flutter:
     sdk: flutter
