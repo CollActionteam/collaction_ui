@@ -1,0 +1,8 @@
+# melos_managed_dependency_overrides: collaction_common,mobile,web
+dependency_overrides:
+  collaction_common:
+    path: ../common
+  mobile:
+    path: ../mobile
+  web:
+    path: ../web

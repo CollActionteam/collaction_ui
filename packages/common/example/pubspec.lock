@@ -60,7 +60,7 @@ packages:
   collaction_common:
     dependency: "direct main"
     description:
-      path: "../packages/common"
+      path: ".."
       relative: true
     source: path
     version: "0.0.1"
