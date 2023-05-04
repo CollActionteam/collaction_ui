@@ -1,4 +1,4 @@
-import 'package:common/widgets/pill_button.dart';
+import 'package:collaction_common/widgets/pill_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../test_helper.dart';

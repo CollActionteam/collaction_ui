@@ -1,0 +1,13 @@
+name: Publish collaction_common to pub.dev
+
+on:
+  push:
+    tags:
+      - 'common-v[0-9]+.[0-9]+.[0-9]+*'
+
+jobs:
+  publish-common:
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+    with:
+      environment: 'production'
+      working-directory: packages/common/

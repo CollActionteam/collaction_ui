@@ -1,4 +1,4 @@
-import 'package:common/widgets/country_icon.dart';
+import 'package:collaction_common/widgets/country_icon.dart';
 import 'package:country_codes/country_codes.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart' show Knobs;
