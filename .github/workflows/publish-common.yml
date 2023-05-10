@@ -1,13 +1,48 @@
 name: Publish collaction_common to pub.dev
 
 on:
-  create:
+  push:
     tags:
       - 'common-v[0-9]+.[0-9]+.[0-9]+*'
 
+env:
+  flutter_version: "3.7.9"
+  flutter_channel: "stable"
+  working_directory: packages/common
+  
 jobs:
   publish-common:
-    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
-    with:
-      environment: 'production'
-      working-directory: packages/common/
+    name: Publish to pub.dev
+    environment: production
+    permissions:
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout repository
+      - uses: actions/checkout@v3
+      - name: Update version
+        env:
+          TAG: ${{ github.ref_name }}
+        working-directory: ${{ env.working_directory }}
+        run: |
+          sed -i 's|version:.*|version: '"${TAG:8}"'|g' pubspec.yaml
+      - name: Setup the Flutter environment
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          cache: true
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
+          flutter-version: ${{ env.flutter_version }}
+
+      # Minimal package setup and dry run checks.
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: ${{ env.working_directory }}
+      - name: Publish - dry run
+        run: dart pub publish --dry-run
+        working-directory: ${{ env.working_directory }}
+      - name: Publish to pub.dev
+        run: dart pub publish -f
+        working-directory: ${{ env.working_directory }}
+
