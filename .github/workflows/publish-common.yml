@@ -1,7 +1,7 @@
 name: Publish collaction_common to pub.dev
 
 on:
-  push:
+  create:
     tags:
       - 'common-v[0-9]+.[0-9]+.[0-9]+*'
 
