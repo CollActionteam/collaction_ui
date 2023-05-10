@@ -1,6 +1,6 @@
 name: collaction_common
 description: Reusable flutter widgets for cross-platform use across collaction apps.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/CollActionteam/collaction_ui
 repository: https://github.com/CollActionteam/collaction_ui
 issue_tracker: https://github.com/CollActionteam/collaction_ui/issues
@@ -19,5 +19,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter:             
-                                      
+flutter:
